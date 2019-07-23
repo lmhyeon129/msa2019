@@ -6,7 +6,8 @@ namespace donation_MERCHANT.Models
         {
             FODD,
             BEAVERAGE,
-            FURNITURE
+            FURNITURE,
+            DRESS
         }
     }
 }
