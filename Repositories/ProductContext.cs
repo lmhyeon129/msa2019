@@ -1,5 +1,5 @@
-using System;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using donation_MERCHANT.Models;
 
 
@@ -13,15 +13,17 @@ namespace donation_MERCHANT.Repositories
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            var stateConverter = new EnumToStringConverter<State>();
+            var bizTypeConverter = new EnumToStringConverter<BizType>();
             builder.Entity<Product>()
                 .HasKey(p => p.ProdId)
                 .HasName("PrimaryKey_ProdId");
             builder.Entity<Product>()
                 .Property(p => p.ProdState)
-                .HasConversion(
-                    s => s.ToString(),
-                    s => (State)Enum.Parse(typeof(State), s)
-                );
+                .HasConversion(stateConverter);
+            builder.Entity<Product>()
+                .Property(p => p.BizType)
+                .HasConversion(bizTypeConverter);
         }
     }
 }
