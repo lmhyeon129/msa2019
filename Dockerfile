@@ -12,5 +12,5 @@ RUN dotnet publish "donation-MERCHANT.csproj" -c Release -o /app
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app
 EXPOSE 5004
-COPY --from=publish /app .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "donation-MERCHANT.dll"]
