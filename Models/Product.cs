@@ -18,4 +18,11 @@ namespace donation_MERCHANT.Models
         RESERVATED,
         DELIVERED
     }
+    public enum BizType
+    {
+        FODD,
+        BEAVERAGE,
+        FURNITURE,
+        DRESS
+    }
 }
